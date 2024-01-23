@@ -47,8 +47,9 @@ def add_ticker(ticker):
 # function to remove ticker from stocks with 0 amount for portfolio    
 def remove_ticker(ticker):
     if ticker in stocks:
-        del stocks[ticker]
+        #del stocks[ticker]
         del st.session_state.stocks[ticker]
+
     #    with open('stocks_files/tickers.txt', 'w') as f:
     #        ret =''
     #        for i in stocks:
@@ -71,11 +72,7 @@ if 'set_sd' not in st.session_state:
 st.sidebar.header('Define your portfolio :)')
 
 new = st.sidebar.text_input(label='Add/remove YAHOO symbol to/from portfolio. \n Use https://finance.yahoo.com to look up the symbol', value='e.g. AAPL')
-
-col1, col2 = st.sidebar.columns(2)
-
-button1 = col1.button('*Add*')
-button2 = col2.button('*Remove*')
+button1 = st.sidebar.button('*Add*')
 
 #on pressing left "Add" button, the text from the text_input will be included into the STOCKS list 
 if button1:
@@ -83,9 +80,9 @@ if button1:
         add_ticker(new.upper())
         
 #on pressing right "Remove" button, the text from the text_input will be excluded from the STOCKS list       
-if button2:
-    if new.strip().upper() in stocks: 
-        remove_ticker(new.upper())    
+#if button2:
+ #   if new.strip().upper() in stocks: 
+ #       remove_ticker(new.upper())    
         
 st.sidebar.subheader('Enter amounts of chosen stocks, ETFs, ... ')
 
@@ -93,52 +90,142 @@ temp_list = list()
 for i, h in enumerate(stocks): 
     temp_list.append(h)
 
+first, second = st.sidebar.columns((4, 3))
 # tickers with text input appers only in case the ticker is in the portfolio
 if len(stocks) > 0:
-    amount_stocks_0 = st.sidebar.text_input(f"*enter amount of **{temp_list[0]}** stocks*", str(stocks[temp_list[0]]))
+    amount_stocks_0 = first.text_input(f"*enter amount of **{temp_list[0]}** stocks*", str(stocks[temp_list[0]]))
     stocks[temp_list[0]] = amount_stocks_0
+    second.write('')
+    b0 = second.button('*remove* '+temp_list[0])
+    if b0:
+        remove_ticker(temp_list[0])
+        st.experimental_rerun()
+first1, second1 = st.sidebar.columns((4, 3))
 if len(stocks) > 1:
-    amount_stocks_1 = st.sidebar.text_input(f"*enter amount of **{temp_list[1]}** stocks*", str(stocks[temp_list[1]]))
+    amount_stocks_1 = first1.text_input(f"*enter amount of **{temp_list[1]}** stocks*", str(stocks[temp_list[1]]))
     stocks[temp_list[1]] = amount_stocks_1
+    second1.write('')
+    b1 = second1.button('*remove* '+temp_list[1])
+    if b1:
+        remove_ticker(temp_list[1])
+        st.experimental_rerun()
+first2, second2 = st.sidebar.columns((4, 3))
 if len(stocks) > 2:
-    amount_stocks_2 = st.sidebar.text_input(f"*enter amount of **{temp_list[2]}** stocks*", str(stocks[temp_list[2]]))
+    amount_stocks_2 = first2.text_input(f"*enter amount of **{temp_list[2]}** stocks*", str(stocks[temp_list[2]]))
     stocks[temp_list[2]] = amount_stocks_2
+    second2.write('')
+    b2 = second2.button('*remove* '+temp_list[2])
+    if b2:
+        remove_ticker(temp_list[2])
+        st.experimental_rerun()
+first3, second3 = st.sidebar.columns((4, 3))
 if len(stocks) > 3:
-    amount_stocks_3 = st.sidebar.text_input(f"*enter amount of **{temp_list[3]}** stocks*", str(stocks[temp_list[3]]))
+    amount_stocks_3 = first3.text_input(f"*enter amount of **{temp_list[3]}** stocks*", str(stocks[temp_list[3]]))
     stocks[temp_list[3]] = amount_stocks_3
+    second3.write('')
+    b3 = second3.button('*remove* '+temp_list[3])
+    if b3:
+        remove_ticker(temp_list[3])
+        st.experimental_rerun()
+first4, second4 = st.sidebar.columns((4, 3))
 if len(stocks) > 4:
-    amount_stocks_4 = st.sidebar.text_input(f"*enter amount of **{temp_list[4]}** stocks*", str(stocks[temp_list[4]]))
+    amount_stocks_4 = first4.text_input(f"*enter amount of **{temp_list[4]}** stocks*", str(stocks[temp_list[4]]))
     stocks[temp_list[4]] = amount_stocks_4
+    second4.write('')
+    b4 = second4.button('*remove* '+temp_list[4])
+    if b4:
+        remove_ticker(temp_list[4])
+        st.experimental_rerun()
+first5, second5 = st.sidebar.columns((4, 3))
 if len(stocks) > 5:
-    amount_stocks_5 = st.sidebar.text_input(f"*enter amount of **{temp_list[5]}** stocks*", str(stocks[temp_list[5]]))
+    amount_stocks_5 = first5.text_input(f"*enter amount of **{temp_list[5]}** stocks*", str(stocks[temp_list[5]]))
     stocks[temp_list[5]] = amount_stocks_5
+    second5.write('')
+    b5 = second5.button('*remove* '+temp_list[5])
+    if b5:
+        remove_ticker(temp_list[5])
+        st.experimental_rerun()
+first6, second6 = st.sidebar.columns((4, 3))
 if len(stocks) > 6:
-    amount_stocks_6 = st.sidebar.text_input(f"*enter amount of **{temp_list[6]}** stocks*", str(stocks[temp_list[6]]))
+    amount_stocks_6 = first6.text_input(f"*enter amount of **{temp_list[6]}** stocks*", str(stocks[temp_list[6]]))
     stocks[temp_list[6]] = amount_stocks_6
+    second6.write('')
+    b6 = second6.button('*remove* '+temp_list[6])
+    if b6:
+        remove_ticker(temp_list[6])
+        st.experimental_rerun()
+first7, second7 = st.sidebar.columns((4, 3))
 if len(stocks) > 7:
-    amount_stocks_7 = st.sidebar.text_input(f"*enter amount of **{temp_list[7]}** stocks*", str(stocks[temp_list[7]]))
+    amount_stocks_7 = first7.text_input(f"*enter amount of **{temp_list[7]}** stocks*", str(stocks[temp_list[7]]))
     stocks[temp_list[7]] = amount_stocks_7
+    second7.write('')
+    b7 = second7.button('*remove* '+temp_list[7])
+    if b7:
+        remove_ticker(temp_list[7])
+        st.experimental_rerun()
+first8, second8 = st.sidebar.columns((4, 3))
 if len(stocks) > 8:
-    amount_stocks_8 = st.sidebar.text_input(f"*enter amount of **{temp_list[8]}** stocks*", str(stocks[temp_list[8]]))
+    amount_stocks_8 = first8.text_input(f"*enter amount of **{temp_list[8]}** stocks*", str(stocks[temp_list[8]]))
     stocks[temp_list[8]] = amount_stocks_8
+    second8.write('')
+    b8 = second8.button('*remove* '+temp_list[8])
+    if b8:
+        remove_ticker(temp_list[8])
+        st.experimental_rerun()
+first9, second9 = st.sidebar.columns((4, 3))
 if len(stocks) > 9:
-    amount_stocks_9 = st.sidebar.text_input(f"*enter amount of **{temp_list[9]}** stocks*", str(stocks[temp_list[9]]))
+    amount_stocks_9 = first9.text_input(f"*enter amount of **{temp_list[9]}** stocks*", str(stocks[temp_list[9]]))
     stocks[temp_list[9]] = amount_stocks_9
+    second9.write('')
+    b9 = second9.button('*remove* '+temp_list[9])
+    if b9:
+        remove_ticker(temp_list[9])
+        st.experimental_rerun()
+first10, second10 = st.sidebar.columns((4, 3))
 if len(stocks) > 10:
-    amount_stocks_10 = st.sidebar.text_input(f"*enter amount of **{temp_list[10]}** stocks*", str(stocks[temp_list[10]]))
+    amount_stocks_10 = first10.text_input(f"*enter amount of **{temp_list[10]}** stocks*", str(stocks[temp_list[10]]))
     stocks[temp_list[10]] = amount_stocks_10
+    second10.write('')
+    b10 = second10.button('*remove* '+temp_list[10])
+    if b10:
+        remove_ticker(temp_list[10])
+        st.experimental_rerun()
+first11, second11 = st.sidebar.columns((4, 3))
 if len(stocks) > 11:
-    amount_stocks_11 = st.sidebar.text_input(f"*enter amount of **{temp_list[11]}** stocks*", str(stocks[temp_list[11]]))
+    amount_stocks_11 = first11.text_input(f"*enter amount of **{temp_list[11]}** stocks*", str(stocks[temp_list[11]]))
     stocks[temp_list[11]] = amount_stocks_11
+    second11.write('')
+    b11 = second11.button('*remove* '+temp_list[11])
+    if b11:
+        remove_ticker(temp_list[11])
+        st.experimental_rerun()
+first12, second12 = st.sidebar.columns((4, 3))
 if len(stocks) > 12:
-    amount_stocks_12 = st.sidebar.text_input(f"*enter amount of **{temp_list[12]}** stocks*", str(stocks[temp_list[12]]))
+    amount_stocks_12 = first12.text_input(f"*enter amount of **{temp_list[12]}** stocks*", str(stocks[temp_list[12]]))
     stocks[temp_list[12]] = amount_stocks_12
+    second12.write('')
+    b12 = second12.button('*remove* '+temp_list[12])
+    if b12:
+        remove_ticker(temp_list[12])
+        st.experimental_rerun()
+first13, second13 = st.sidebar.columns((4, 3))
 if len(stocks) > 13:
-    amount_stocks_13 = st.sidebar.text_input(f"*enter amount of **{temp_list[13]}** stocks*", str(stocks[temp_list[13]]))
+    amount_stocks_13 = first13.text_input(f"*enter amount of **{temp_list[13]}** stocks*", str(stocks[temp_list[13]]))
     stocks[temp_list[13]] = amount_stocks_13
+    second13.write('')
+    b13 = second13.button('*remove* '+temp_list[13])
+    if b13:
+        remove_ticker(temp_list[13])
+        st.experimental_rerun()
+first14, second14 = st.sidebar.columns((4, 3))
 if len(stocks) > 14:
-    amount_stocks_14 = st.sidebar.text_input(f"*enter amount of **{temp_list[14]}** stocks*", str(stocks[temp_list[14]]))
+    amount_stocks_14 = first14.text_input(f"*enter amount of **{temp_list[14]}** stocks*", str(stocks[temp_list[14]]))
     stocks[temp_list[14]] = amount_stocks_14
+    second14.write('')
+    b14 = second14.button('*remove* '+temp_list[14])
+    if b14:
+        remove_ticker(temp_list[14])
+        st.experimental_rerun()
 
 
 #****************************************************************************************
@@ -273,8 +360,9 @@ def price_plot(symbol, currency, fg_color=bg_color, bg_color=bg_color, place=st)
     ax.yaxis.set_label_position("right")
     fig.gca().yaxis.set_major_formatter(mtick.FormatStrFormatter(pref+suff))
     plt.plot(a['Date'], a[symbol+"_"+currency]/multip, color="dodgerblue", linestyle='dashed', alpha=0.9, label=symbol+' price/value', linewidth=1)
-    plt.plot(a['Date'], a[symbol+"_total_"+currency]/multip, color='dodgerblue', alpha=0.9, label='value with dividends since '+convert_to_datetime(str(start_date)).strftime("%b %d, %Y"), linewidth=1)
-    plt.fill_between(a['Date'], a[symbol+"_"+currency]/multip, a[symbol+"_total_"+currency]/multip, color=secondaryBackgroundColor, alpha=0.8, label='dividend yields')
+    if max(a[symbol+"_"+currency])!=max(a[symbol+"_total_"+currency]):
+        plt.plot(a['Date'], a[symbol+"_total_"+currency]/multip, color='dodgerblue', alpha=0.9, label='value with dividends since '+convert_to_datetime(str(start_date)).strftime("%b %d, %Y"), linewidth=1)
+        plt.fill_between(a['Date'], a[symbol+"_"+currency]/multip, a[symbol+"_total_"+currency]/multip, color=secondaryBackgroundColor, alpha=0.8, label='dividend yields')
 
    # plt.axhline(y=deskrip['95%']/multip, color='lightgreen', linestyle='dashed', label='95 percentil of total value')
   #  plt.axhline(y=deskrip['90%']/multip, color='yellow', linestyle='dashed', label='90 percentil of total value')
